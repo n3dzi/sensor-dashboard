@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+analysis.db
+statistik.xlsx
+sensor_trend.png
