@@ -152,7 +152,7 @@ def stats_df(label: str, serie: pd.Series) -> dict:
 with tab_global:
     st.dataframe(
         pd.DataFrame([stats_df("Alle ausgewählten", df["temperatur"])]),
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
 
@@ -160,7 +160,7 @@ with tab_kat:
     rows = [stats_df(kat, df[df["kategorie"] == kat]["temperatur"]) for kat in sorted(auswahl)]
     st.dataframe(
         pd.DataFrame(rows),
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
 
@@ -183,13 +183,13 @@ if "greenhouse" in auswahl:
         anzeige.columns = ["Messwert (°C)", "7-Tage-Ø (°C)", f"Grenze Ø+{sigma}σ (°C)"]
         anzeige = anzeige.round(2)
         st.error(f"{len(anomalien)} Anomalie(n) erkannt (σ-Schwelle: {sigma})")
-        st.dataframe(anzeige, use_container_width=True)
+        st.dataframe(anzeige, width='stretch')
 
 # ── Rohdaten ─────────────────────────────────────────────────────────────────
 
 with st.expander("Rohdaten anzeigen"):
     st.dataframe(
         df.sort_values("datum", ascending=False).reset_index(drop=True),
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
